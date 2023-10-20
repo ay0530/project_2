@@ -3,6 +3,8 @@ const $movie_list = document.querySelector('.movie_list'); // 영화 목록 clas
 const $movies = document.querySelector('.movies'); // 영화 카드 class
 const $movie = document.querySelector('.movie'); // 영화 카드 class
 
+
+
 let originData; // API 응답 결과를 받을 변수
 
 // TMDB - Top Rated - API 
@@ -72,8 +74,34 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
                     alert(`영화의 id는 ${select_m_id} 입니다.`);
                 });
             });
+
+            // searchMovie 함수 : 영화 제목 검색
+            const $search_btn = document.querySelector('#search_btn'); // 검색 버튼 id
+            const $search_text = document.querySelector('#search_text'); // 영화 카드 class
+            const $allMovies = document.querySelectorAll('.movies');
+            $search_btn.addEventListener('click', function () {
+                const searchKeyword = $search_text.value; // search_text의 입력값 받아오기
+                const searchMovie = originData.filter(function (item) {
+                    return item.title.includes(searchKeyword); // 
+                });
+
+                // 유효성 검사
+                if (searchMovie.length <= 0) {
+                    // 검색 결과가 존재하지 않을 경우
+                    alert("검색 결과가 없습니다.");
+                } else {
+                    $allMovies.forEach(function ($allMovies) {
+                        $movie_list.removeChild($allMovies);
+                    });
+                    console.log(searchMovie);
+                }
+
+                // 검색 결과가 없을 경우
+
+            });
         }
         selectData();
+
     })
     // ----- Fetch -----
     .catch(err => console.error(err));
