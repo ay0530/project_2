@@ -3,6 +3,11 @@ const $movie_list = document.querySelector('.movie_list'); // 영화 목록 clas
 const $movies = document.querySelector('.movies'); // 영화 카드 class
 const $movie = document.querySelector('.movie'); // 영화 카드 class
 
+const $search_btn = document.querySelector('#search_btn'); // 검색 버튼 id
+const $search_text = document.querySelector('#search_text'); // 영화 카드 class
+
+
+
 
 
 let originData; // API 응답 결과를 받을 변수
@@ -45,7 +50,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
                         <h2 class="title"> ${title} </h2>
                         <div class="overview">${overview}</div>
                         <h3 class="vote_average">${vote_average}</h3>
-                        <button></button>
                     </div>
                 `;
                 // movies div 1개에 movie div 2개 삽입
@@ -76,9 +80,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
             });
 
             // searchMovie 함수 : 영화 제목 검색
-            const $search_btn = document.querySelector('#search_btn'); // 검색 버튼 id
-            const $search_text = document.querySelector('#search_text'); // 영화 카드 class
-            const $allMovies = document.querySelectorAll('.movies');
             $search_btn.addEventListener('click', function () {
                 const searchKeyword = $search_text.value; // search_text의 입력값 받아오기
                 const searchMovie = originData.filter(function (item) {
@@ -86,18 +87,59 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
                 });
 
                 // 유효성 검사
-                if (searchMovie.length <= 0) {
+                if (searchKeyword === "") {
+                    // 검색어를 입력하지 않았을 경우
+                    alert("검색어를 입력해주세요!!");
+                }
+                else if (searchMovie.length <= 0) {
                     // 검색 결과가 존재하지 않을 경우
                     alert("검색 결과가 없습니다.");
                 } else {
+                    const $allMovies = document.querySelectorAll('.movies');
                     $allMovies.forEach(function ($allMovies) {
                         $movie_list.removeChild($allMovies);
                     });
+                    for (let i = 0; i < searchMovie.length; i++) {
+                        // 필요한 값 추출 후 변수에 참조!!
+                        let m_id = searchMovie[i].id; // id
+                        let title = searchMovie[i].title; // 제목
+                        let overview = searchMovie[i].overview; // 내용
+                        let vote_average = searchMovie[i].vote_average; // 별점
+                        let poster_path = searchMovie[i].poster_path; // 썸네일
+                        let backdrop_path = searchMovie[i].backdrop_path; // 영화 이미지
+                        let release_date = searchMovie[i].release_date; // 출시일
+
+                        // movie DIV에 추가할 내용 작성
+                        let movie = `
+                            <div class="rank">
+                                ${i + 1}
+                            </div>
+                            <img class="movie__img" src="https://image.tmdb.org/t/p/w500/${poster_path}">
+                            <div class="movie__text">
+                                <h2 class="title"> ${title} </h2>
+                                <div class="overview">${overview}</div>
+                                <h3 class="vote_average">${vote_average}</h3>
+                            </div>
+                        `;
+                        // movies div 1개에 movie div 2개 삽입
+                        if (i % 2 === 0) {
+                            const div_movies = document.createElement('div'); // div 추가(createElement)
+                            div_movies.setAttribute('class', 'movies'); // div_movies에 class 추가(setAttribute())
+                            $movie_list.appendChild(div_movies);
+                        }
+
+                        // movies div에 movie div 삽입
+                        const div_movie = document.createElement('div');// div 추가(createElement)
+                        div_movie.setAttribute('class', 'movie');// div_movie에 class 추가(setAttribute())
+                        div_movie.setAttribute('id', m_id);// div_movie에 id 추가(setAttribute())
+                        div_movie.innerHTML = movie;// movie의 내용 변경(innerHTML)
+
+                        const moviesContainer = document.querySelector('.movies:last-child'); // 가장 마지막 .movies에 movie 추가
+                        moviesContainer.appendChild(div_movie); // 선택한 .movies 요소에 movie 추가
+                    }
                     console.log(searchMovie);
                 }
-
                 // 검색 결과가 없을 경우
-
             });
         }
         selectData();
