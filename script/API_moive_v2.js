@@ -65,13 +65,12 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
                 const moviesContainer = document.querySelector('.movies:last-child'); // 가장 마지막 .movies에 movie 추가
                 moviesContainer.appendChild(div_movie); // 선택한 .movies 요소에 movie 추가
             }
-
         }
         selectData();
     })
     .catch(err => console.error(err));
 
-    movie.addEventListener(, listener)
+    // movie.addEventListener(, listener)
     
 
 

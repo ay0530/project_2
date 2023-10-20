@@ -3,6 +3,8 @@ const $movie_list = document.querySelector('.movie_list'); // 영화 목록 clas
 const $movies = document.querySelector('.movies'); // 영화 카드 class
 const $movie = document.querySelector('.movie'); // 영화 카드 class
 
+const moviesElements = document.querySelectorAll("button");
+
 let originData; // API 응답 결과를 받을 변수
 
 // TMDB - Top Rated - API 
@@ -42,6 +44,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
                         <h2 class="title"> ${title} </h2>
                         <div class="overview">${overview}</div>
                         <h3 class="vote_average">${vote_average}</h3>
+                        <button></button>
                     </div>
                 `;
                 // movies div 1개에 movie div 2개 삽입
@@ -58,15 +61,22 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
 
                 const moviesContainer = document.querySelector('.movies:last-child'); // 가장 마지막 .movies에 movie 추가
                 moviesContainer.appendChild(div_movie); // 선택한 .movies 요소에 movie 추가
+
             }
         }
         selectData();
+
+
+        // 영화 선택 시 ID 띄우기
+        moviesElements.forEach(function (moviesElement) {
+            document.addEventListener("DOMContentLoaded", function () {
+                moviesElement.addEventListener("click", function (event) {
+                    alert("클릭 이벤트 발생!");
+                });
+            });
+        });
+
     })
     .catch(err => console.error(err));
-
-// movie.addEventListener(, listener)
-
-
-
 
 
