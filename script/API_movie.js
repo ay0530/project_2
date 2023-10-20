@@ -7,9 +7,6 @@ const $search_btn = document.querySelector('#search_btn'); // 검색 버튼 id
 const $search_text = document.querySelector('#search_text'); // 영화 카드 class
 
 
-
-
-
 let originData; // API 응답 결과를 받을 변수
 
 // TMDB - Top Rated - API 
@@ -42,9 +39,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
 
                 // movie DIV에 추가할 내용 작성
                 let movie = `
-                    <div class="rank">
-                        ${i + 1}
-                    </div>
                     <img class="movie__img" src="https://image.tmdb.org/t/p/w500/${poster_path}">
                     <div class="movie__text">
                         <h2 class="title"> ${title} </h2>
@@ -95,10 +89,12 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
                     // 검색 결과가 존재하지 않을 경우
                     alert("검색 결과가 없습니다.");
                 } else {
+                    // 검색 결과가 존재할 경우
                     const $allMovies = document.querySelectorAll('.movies');
                     $allMovies.forEach(function ($allMovies) {
                         $movie_list.removeChild($allMovies);
                     });
+                    // HTML 수정 반복문
                     for (let i = 0; i < searchMovie.length; i++) {
                         // 필요한 값 추출 후 변수에 참조!!
                         let m_id = searchMovie[i].id; // id
@@ -111,9 +107,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
 
                         // movie DIV에 추가할 내용 작성
                         let movie = `
-                            <div class="rank">
-                                ${i + 1}
-                            </div>
                             <img class="movie__img" src="https://image.tmdb.org/t/p/w500/${poster_path}">
                             <div class="movie__text">
                                 <h2 class="title"> ${title} </h2>
@@ -137,9 +130,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
                         const moviesContainer = document.querySelector('.movies:last-child'); // 가장 마지막 .movies에 movie 추가
                         moviesContainer.appendChild(div_movie); // 선택한 .movies 요소에 movie 추가
                     }
-                    console.log(searchMovie);
                 }
-                // 검색 결과가 없을 경우
             });
         }
         selectData();

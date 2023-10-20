@@ -48,12 +48,12 @@ nav {
     right: 12.5%;
 }
 
-#searchText {
+#search_text {
     width: 300px;
     height: 50px;
 }
 
-#searchBtn {
+#search_btn {
     height: 50px;
     width: 50px;
 }
@@ -70,13 +70,13 @@ main {
     padding: 20px 0 0 20px;
     font-size: 30px;
 }
-
+/* 
 .rank {
     width: 15%;
     margin: auto;
     font-size: 75px;
     text-align: center;
-}
+} */
 
 .movie_list {
     width: 90%;
@@ -99,19 +99,21 @@ main {
 
     display: flex;
     flex-direction: row;
+
+    overflow: hidden;
 }
 
 .movie__img {
     background-color: rgb(240, 240, 240);
     /* border: 1px solid green; */
-    width: 30%;
+    width: 40%;
     height: 100%;
 
     overflow: hidden;
 }
 
 .movie__text {
-    width: 55%;
+    width: 60%;
     margin: 10px;
 
     display: flex;
