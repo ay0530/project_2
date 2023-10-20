@@ -3,8 +3,6 @@ const $movie_list = document.querySelector('.movie_list'); // 영화 목록 clas
 const $movies = document.querySelector('.movies'); // 영화 카드 class
 const $movie = document.querySelector('.movie'); // 영화 카드 class
 
-const moviesElements = document.querySelectorAll("button");
-
 let originData; // API 응답 결과를 받을 변수
 
 // TMDB - Top Rated - API 
@@ -27,6 +25,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
             // foreach로 변경 예정
             for (let i = 0; i < originData.length; i++) {
                 // 필요한 값 추출 후 변수에 참조!!
+                let m_id = originData[i].id; // id
                 let title = originData[i].title; // 제목
                 let overview = originData[i].overview; // 내용
                 let vote_average = originData[i].vote_average; // 별점
@@ -57,26 +56,26 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', option
                 // movies div에 movie div 삽입
                 const div_movie = document.createElement('div');// div 추가(createElement)
                 div_movie.setAttribute('class', 'movie');// div_movie에 class 추가(setAttribute())
+                div_movie.setAttribute('id', m_id);// div_movie에 id 추가(setAttribute())
                 div_movie.innerHTML = movie;// movie의 내용 변경(innerHTML)
 
                 const moviesContainer = document.querySelector('.movies:last-child'); // 가장 마지막 .movies에 movie 추가
                 moviesContainer.appendChild(div_movie); // 선택한 .movies 요소에 movie 추가
-
             }
-        }
-        selectData();
 
-
-        // 영화 선택 시 ID 띄우기
-        moviesElements.forEach(function (moviesElement) {
-            document.addEventListener("DOMContentLoaded", function () {
-                moviesElement.addEventListener("click", function (event) {
-                    alert("클릭 이벤트 발생!");
+            // selectMovie 함수 : 영화 선택 시 ID 띄우기
+            const moviesElements = document.querySelectorAll(".movie"); // 모든 movie class 선택
+            moviesElements.forEach(function (movieElement) {
+                movieElement.addEventListener('click', function () {
+                    // click 이벤트가 발생했을 때 함수를 실행(@.addEventListener('click', function(){}))
+                    const select_m_id = movieElement.getAttribute('id'); // select_m_id에 선택한 movie의 id값 할당
+                    alert(`영화의 id는 ${select_m_id} 입니다.`);
                 });
             });
-        });
-
+        }
+        selectData();
     })
+    // ----- Fetch -----
     .catch(err => console.error(err));
 
 
