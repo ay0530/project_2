@@ -1,11 +1,7 @@
 
-/* @import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Nanum+Brush+Script&display=swap'); */
-
 * {
     box-sizing: border-box;
     margin: 0px;
-
-    /* font-family: 'Gaegu', cursive; */
 }
 
 /* 상단 영역*/
@@ -20,13 +16,14 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    z-index: 100;
 }
 
 .nav__title {
     position: absolute;
     left: 12.5%;
 
-    /* border: 2px solid red; */
     font-size: 75px;
     color: white;
 }
@@ -63,30 +60,22 @@ nav {
 /* 메인 영역*/
 main {
     background-color: white;
-    margin: auto;
     width: 80%;
 
-    /* position: absolute;
-    top: 100px; */
+    position: absolute;
+    top: 75px;
+    left: 50%;;
+    transform: translate(-50%, 0);
 }
 
 .main_top {
-    /* border: 5px solid red; */
     padding: 20px 0 0 20px;
     font-size: 30px;
 }
-/* 
-.rank {
-    width: 15%;
-    margin: auto;
-    font-size: 75px;
-    text-align: center;
-} */
 
 .movie_list {
     width: 90%;
     margin: 50px auto;
-    /* border: 5px solid orange; */
 }
 
 .movies {
@@ -99,7 +88,7 @@ main {
     height: 300px;
     margin: 20px 20px;
 
-    border: 5px solid rgb(183, 181, 181);
+    border: 3px solid rgb(183, 181, 181);
     border-radius: 20px;
 
     display: flex;
@@ -111,7 +100,6 @@ main {
 
 .movie__img {
     background-color: rgb(240, 240, 240);
-    /* border: 1px solid green; */
     width: 30%;
     height: 90%;
     margin: auto 20px;
@@ -132,33 +120,28 @@ main {
 
 .title {
     height: 15%;
-    /* border: 1px solid skyblue; */
     font-size: 30px;
 
     display: flex;
     align-items: center;
 
-    white-space: nowrap;
     overflow: hidden;
-    /* 내용 넘침 처리 */
 }
 
 .overview {
     height: 70%;
     padding: 5px 0;
-    /* border: 1px solid navy; */
 
-    font-size: 20px;
+    font-size: 19px;
 
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
     overflow: hidden;
-    /* 내용 넘침 처리 */
 }
 
 .vote_average {
     height: 15%;
-    /* border: 1px solid purple; */
-
-    white-space: nowrap;
 
     display: flex;
     align-items: center;
@@ -166,7 +149,6 @@ main {
 
 /* 하단 영역 */
 footer {
-    background-color: rgb(53, 51, 51);
     width: 100%;
     height: 50px;
 
@@ -178,15 +160,17 @@ footer {
 }
 
 .footer__icon{
-    /* border: 1px solid rebeccapurple; */
-    width: 500px;
-    margin: auto;
+    width: 50px;
 
     display: flex;
     flex-direction: row;
+
+    position: fixed;
+    right: 7.5%;
+    bottom: 2.5%;
 }
 
-.footer__icon>p {
-    /* margin: 0px; */
+.logo {
+    width: 75px;
     padding: 10px;
 }

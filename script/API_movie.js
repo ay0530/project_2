@@ -74,25 +74,27 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en&opage=1', option
             movieElement.addEventListener('click', function () {
                 // click 이벤트가 발생했을 때 함수를 실행(@.addEventListener('click', function(){}))
                 const select_m_id = movieElement.getAttribute('id'); // select_m_id에 선택한 movie의 id값 할당
-                alert(`영화의 id는 ${select_m_id} 입니다.`);
+                const $select_title = movieElement.querySelector('.title'); // title 클래스를 가진 태그 선택
+                const select_title = $select_title.textContent; // 태그의 텍스트를 받아옴(tag.textContent)
+                alert(`${select_title}의 id는 ${select_m_id} 입니다.`);
             });
         });
 
         // 검색 버튼을 눌렀을 때
         $search_btn.addEventListener('click', function () {
             // click 이벤트가 발생했을 때 함수를 실행(@.addEventListener('click', function(){}))
-            search_Movie();
+            search_Movie(); // 영화 검색 함수
         })
 
         // 검색란에서 엔터를 눌렀을 때
         $search_text.addEventListener('keyup', function (evnet) {
             // 키 입력 이벤트가 발생했을 때 함수를 실행(@.addEventListener('keyup', function(){}))
             if (event.key === 'Enter') {
-                search_Movie();
+                search_Movie(); // 영화 검색 함수
             }
         })
 
-        // 영화 검색 
+        // 영화 검색 함수
         let search_Movie = () => {
             const searchKeyword = $search_text.value; // search_text의 입력값 받아오기
             const searchMovie = originData.filter(function (item) {
