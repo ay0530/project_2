@@ -19,7 +19,7 @@ const options = {
     }
 };
 
-fetch('https://api.themoviedb.org/3/movie/top_rated?language=en&opage=1', options)
+fetch('https://api.themoviedb.org/3/movie/top_rated?language=ko&opage=1', options)
     .then(response => response.json())
     .then(response => {
         originData = response.results;
