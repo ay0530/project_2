@@ -47,6 +47,7 @@ nav {
     height: 50px;
 
     font-size: 20px;
+    text-indent: 10px;
 }
 
 #search_btn {
@@ -122,9 +123,8 @@ main {
     height: 15%;
     font-size: 30px;
 
-    display: flex;
-    align-items: center;
-
+    white-space: nowrap;
+    text-overflow: ellipsis;
     overflow: hidden;
 }
 
