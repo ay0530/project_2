@@ -8,10 +8,6 @@
     /* font-family: 'Gaegu', cursive; */
 }
 
-body{
-    background-color: gray;
-}
-
 /* 상단 영역*/
 nav {
     background-color: rgb(53, 51, 51);
@@ -19,6 +15,7 @@ nav {
     height: 100px;
 
     position: fixed;
+    top: 0;
 
     display: flex;
     flex-direction: row;
@@ -51,11 +48,16 @@ nav {
 #search_text {
     width: 300px;
     height: 50px;
+
+    font-size: 20px;
 }
 
 #search_btn {
     height: 50px;
     width: 50px;
+
+    font-size: 20px;
+    cursor: pointer;
 }
 
 /* 메인 영역*/
@@ -63,6 +65,9 @@ main {
     background-color: white;
     margin: auto;
     width: 80%;
+
+    /* position: absolute;
+    top: 100px; */
 }
 
 .main_top {
@@ -94,27 +99,32 @@ main {
     height: 300px;
     margin: 20px 20px;
 
-    border: 3px solid rgb(183, 181, 181);
-    border-radius: 10px;
+    border: 5px solid rgb(183, 181, 181);
+    border-radius: 20px;
 
     display: flex;
     flex-direction: row;
 
     overflow: hidden;
+    cursor: pointer;
 }
 
 .movie__img {
     background-color: rgb(240, 240, 240);
     /* border: 1px solid green; */
-    width: 40%;
-    height: 100%;
+    width: 30%;
+    height: 90%;
+    margin: auto 20px;
+
+    border-radius: 20px;
 
     overflow: hidden;
 }
 
 .movie__text {
-    width: 60%;
-    margin: 10px;
+    width: 70%;
+    height: 90%;
+    margin: auto 20px;
 
     display: flex;
     flex-direction: column;
@@ -123,7 +133,7 @@ main {
 .title {
     height: 15%;
     /* border: 1px solid skyblue; */
-    font-size: 40px;
+    font-size: 30px;
 
     display: flex;
     align-items: center;
